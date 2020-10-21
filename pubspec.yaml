@@ -29,7 +29,9 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.0
   fab_circular_menu: ^1.0.1
-
+  receive_sharing_intent: ^1.4.1
+  flutter_ffmpeg: ^0.3.0
+  youtube_explode_dart: ^1.6.1+1
 dev_dependencies:
   flutter_test:
     sdk: flutter
