@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_insta/flutter_insta.dart';
+import 'package:insta_html_parser/insta_html_parser.dart';
 import 'dart:async';
 
 import 'package:receive_sharing_intent/receive_sharing_intent.dart';
@@ -13,7 +15,10 @@ class _MyAppState extends State<MyApp1> {
   StreamSubscription _intentDataStreamSubscription;
   List<SharedMediaFile> _sharedFiles;
   String _sharedText;
-
+  FlutterInsta flutterInsta = FlutterInsta();
+  String username, followers = " ", following, bio, website, profileimage;
+  bool pressed = false;
+  bool downloading = false;
   @override
   void initState() {
     super.initState();
@@ -57,6 +62,8 @@ class _MyAppState extends State<MyApp1> {
         _sharedText = value;
         print("Shared: $_sharedText");
       });
+      getInstadData(_sharedText);
+//      printDetails(_sharedText);
     });
   }
 
@@ -104,4 +111,32 @@ class _MyAppState extends State<MyApp1> {
     // Close the YoutubeExplode's http client.
     yt.close();
   }
+
+  getInstadData(_sharedText) async {
+//    List<Widget> _widgetsList = [];
+    print(InstaParser.postsUrlsFromProfile('$_sharedText').then((item) {
+      print("item$item");
+    }));
+//    Map<String, String> _userData = await InstaParser.userDataFromProfile(
+//        'www.instagram.com/p/CF1iEQ9lpeB/');
+//    print(_userData);
+////    print(_widgetsList);
+  }
+
+  Future printDetails(username) async {
+    await flutterInsta.getProfileData(username);
+    setState(() {
+      this.username = flutterInsta.username; //username
+      this.followers = flutterInsta.followers; //number of followers
+      this.following = flutterInsta.following; // number of following
+      this.website = flutterInsta.website; // bio link
+      this.bio = flutterInsta.bio; // Bio
+      this.profileimage = flutterInsta.imgurl; // Profile picture URL
+      print(followers);
+    });
+  }
 }
+
+
+
+//#t=XmYs

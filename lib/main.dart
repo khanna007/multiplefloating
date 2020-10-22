@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:fab_circular_menu/fab_circular_menu.dart';
 import 'package:flutter_app/recving.dart';
 
+import 'clipboard.dart';
+import 'instagram.dart';
+
 void main() {
   runApp(MyApp1());
 }
